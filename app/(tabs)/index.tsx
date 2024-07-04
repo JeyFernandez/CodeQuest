@@ -1,44 +1,31 @@
-import { StyleSheet, Platform } from "react-native";
-
-import { HelloWave } from "@/components/HelloWave";
-import { ThemedText } from "@/components/ThemedText";
-import { ThemedView } from "@/components/ThemedView";
+import { LevelCard } from '@/components/levelCards/LevelCards';
+import React from 'react';
+import { StyleSheet, Platform, ScrollView } from 'react-native';
 
 export default function HomeScreen() {
   return (
-    <ThemedView style={styles.container}>
-      <ThemedText style={styles.title}>
-        Welcome to the CodeQuest in {Platform.OS}!
-      </ThemedText>
-      <HelloWave />
-      <ThemedText style={styles.subtitle}>
-        This is a simple example of a parallax scroll view with a header image
-        that scales and translates as you scroll.
-      </ThemedText>
-    </ThemedView>
+    <ScrollView contentContainerStyle={styles.container}>
+      <LevelCard
+        levelNumber={1}
+        levelTitle="Introducción a la Programación"
+        levelDescription="Este nivel cubre los fundamentos básicos de la programación, incluyendo conceptos como variables, funciones y estructuras de control."
+      />
+      <LevelCard
+        levelNumber={2}
+        levelTitle="Programación Intermedia"
+        levelDescription="Este nivel expande los conocimientos básicos y cubre temas más avanzados como estructuras de datos, algoritmos y desarrollo de aplicaciones básicas."
+      />
+      <LevelCard
+        levelNumber={3}
+        levelTitle="Programación Avanzada"
+        levelDescription="En este nivel, se profundiza en técnicas avanzadas de programación, optimización de código y desarrollo de aplicaciones complejas."
+      />
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
     padding: 16,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 16,
-  },
-  subtitle: {
-    fontSize: 16,
-    textAlign: "center",
-    marginBottom: 16,
-  },
-  reactLogo: {
-    width: 200,
-    height: 200,
-    marginTop: 16,
   },
 });
