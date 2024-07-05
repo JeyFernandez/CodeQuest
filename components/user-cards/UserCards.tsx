@@ -5,13 +5,10 @@ import {
   type ViewProps,
 } from "react-native";
 
-import { useThemeColor } from "@/hooks/useThemeColor";
 import { ThemedText } from "../ThemedText";
 import { useColorScheme } from "@/hooks/useColorScheme";
 
 export type UserViewProps = ViewProps & {
-  lightColor?: string;
-  darkColor?: string;
   titleCard: string;
   info: string;
   onPress: () => void;
@@ -19,25 +16,19 @@ export type UserViewProps = ViewProps & {
 
 export default function UserCards({
   style,
-  lightColor,
-  darkColor,
   titleCard,
   info,
   ...otherProps
 }: UserViewProps) {
   const theme = useColorScheme();
-  const backgroundColor = useThemeColor(
-    { light: lightColor, dark: darkColor },
-    "background"
-  );
-
-  const borderColor = theme === "light" ? "black" : "white";
+  // const borderColor = theme === "light" ? "black" : "#3f3D3D";
+  const backgroundColor = theme === "light" ? "white" : "#161616";
 
   return (
     <TouchableOpacity
       style={[
         styles.container,
-        { backgroundColor, borderColor },
+        { backgroundColor },
         style, // para permitir la personalización adicional del estilo
       ]}
       {...otherProps}>
@@ -51,12 +42,14 @@ export default function UserCards({
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: "center",
-    alignItems: "center",
     padding: 16,
     marginVertical: 8,
     borderRadius: 8,
-    borderWidth: 1,
+    // borderWidth: 1,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 1,
+    elevation: 2,
   },
   containerTitle: {
     marginBottom: 8,
